@@ -194,7 +194,7 @@ class Blockchain {
                 let data = await b.getBData();
                 console.log(data);
                 if (data.owner == address){
-                    stars.push(data)
+                    stars.push(data);
                     //console.log('adding the star');
                     //console.log(stars.length);
                 }
