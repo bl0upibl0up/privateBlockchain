@@ -78,7 +78,7 @@ class Block {
         let decodedData = JSON.parse(data);
         return new Promise(async(resolve, reject) =>{
             if(this.height == 0){
-                resolve('this is the genesis block');
+                reject(new Error('this is the genesis block'));
             }
             else{
                 resolve(decodedData);

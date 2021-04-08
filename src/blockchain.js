@@ -78,7 +78,7 @@ class Blockchain {
             block.hash = SHA256(JSON.stringify(block)).toString();
             let errors = self.validateChain();
             if(errors.length > 0){
-                console.log('there are errors here');
+                console.log('Chain does not seem valid');
                 reject(errors);
             }
             else{
@@ -190,23 +190,17 @@ class Blockchain {
         let self = this;
         let stars = [];
         return new Promise((resolve, reject) => {
-            self.chain.forEach(async(b) => {
-                let data = await b.getBData();
+            self.chain.forEach(async(blck) => {
+                let data = await blck.getBData(); //syntax from https://knowledge.udacity.com/questions/282668
                 console.log(data);
-                if (data.owner == address){
+                if (data.owner === address){
                     stars.push(data);
-                    //console.log('adding the star');
-                    //console.log(stars.length);
+                    //console.log('length of array is ', stars.length);
+                    
                 }
             });
-            console.log(stars.length);
-            if(stars.length > 0){
-                console.log('here');
-                resolve(stars);
-            }
-            else{
-                resolve('the adress does not own any star');
-            }
+            //console.log('length of array is', stars.length);
+            resolve(stars);
         });
     }
 
