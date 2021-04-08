@@ -48,7 +48,7 @@ class Block {
             const auxHash = self.hash;
             self.hash = null;
             let hash = SHA256(JSON.stringify(self)).toString();
-            self.hash = hash;
+            self.hash = auxHash;
             if (auxHash != hash){
                 reject(Error('wrong hash'));
             }else{
